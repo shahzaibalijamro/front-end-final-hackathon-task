@@ -14,9 +14,23 @@
             <a class="btn btn-ghost text-white text-xl">Blog App</a>
         </div>
         <div class="flex-none gap-2">
-            <h1 style="display: none;" class="text-white nav-username font-semibold text-lg">Hello! User</h1>
-            <button style="display: none;" class="btn nav-login-btn text-white btn-ghost"><a href="login.html">Login</a></button>
-            <button style="display: none;" class="btn nav-logout-btn text-white btn-ghost">Log out</button>
+            <button class="btn text-white btn-ghost">Shahzaib Ali</button>
+            <button class="btn text-white btn-ghost">Logout</button>
+            <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                    <div class="w-10 rounded-full">
+                        <img alt="Tailwind CSS Navbar component"
+                            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                    </div>
+                </div>
+                <ul tabindex="0"
+                    class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                    <li><a href="postad.html">Post an add</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a>My wishlists</a></li>
+                    <li><a>Logout</a></li>
+                </ul>
+            </div>
         </div>
     </div>
     <div class="p-[1.5rem] bg-white">
@@ -113,7 +127,7 @@
             </div>
         </div>
     </div>
-    <script type="module" src="./app/app.js"></script>
+    <script src="./app/app.js"></script>
     <script src="https://kit.fontawesome.com/e686848577.js" crossorigin="anonymous"></script>
 </body>
 </html>

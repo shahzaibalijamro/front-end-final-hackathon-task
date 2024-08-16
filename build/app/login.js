@@ -11,7 +11,7 @@ form.addEventListener('submit', event =>{
     event.preventDefault();
     signInWithEmailAndPassword(auth, email.value, passwordInput.value)
     .then((userCredential) => {
-        window.location = 'dashboard.html';
+        window.location = 'index.html';
     })
     .catch((error) => {
         const errorCode = error.code;

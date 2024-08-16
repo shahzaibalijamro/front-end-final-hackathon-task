@@ -5,6 +5,7 @@ const loginBtn = document.querySelector('.nav-login-btn');
 const logoutBtn = document.querySelector('.nav-logout-btn');
 const navUsername = document.querySelector('.nav-username')
 const currentUser = [];
+const dashboardForm = document.querySelector('#dashboard-form');
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         console.log(user.uid);
@@ -21,12 +22,9 @@ onAuthStateChanged(auth, async (user) => {
         navUsername.innerHTML = `Hello! ${currentUser[0].name}`
         logoutBtn.style.display = 'block';
     } else {
-        navUsername.style.display = 'block';
-        navUsername.innerHTML = `Hello! User`
-        loginBtn.style.display = 'block';
+
     }
 });
-
 
 
 logoutBtn.addEventListener('click', ()=>{

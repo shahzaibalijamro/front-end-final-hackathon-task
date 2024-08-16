@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./style/style.css">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="./style/dashboard.css">
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -21,11 +21,26 @@
     </div>
     <div class="p-[1.5rem] bg-white">
         <div class="my-container">
-                <h1 class="text-black font-bold text-2xl">Good Morning Readers!</h1>
+                <h1 class="text-black font-semibold text-2xl">Dashboard</h1>
         </div>
     </div>
     <div class="my-container">
-        <h1 class="text-black font-semibold my-5 text-xl">All blogs</h1>
+        <div class="flex max-w-4xl mt-5 gap-[1.25rem] flex-col">
+            <div class="p-[2rem] gap-4rounded-xl bg-white">
+                <form>
+                    <input type="text" placeholder="Placeholder" class="input input-bordered w-full" />
+                    <textarea
+                    placeholder="What is in your mind?"
+                    class="textarea mt-3 ps-[1rem] pt-[0.5rem] input-bordered text-[1rem] textarea-lg w-full"></textarea>
+                    <div class="mt-3">
+                        <button class="btn text-white bg-[#7749f8] border-[#7749f8] btn-active btn-neutral">Publish Blog</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="my-container">
+        <h1 class="text-black font-semibold my-5 text-xl">My blogs</h1>
         <div class="flex max-w-4xl gap-[1.25rem] flex-col">
             <div class="p-[1.3rem] flex flex-col rounded-xl bg-white">
                 <div class="flex justify-start gap-4">
@@ -113,7 +128,7 @@
             </div>
         </div>
     </div>
-    <script type="module" src="./app/app.js"></script>
+    <script type="module" src="./app/dashboard.js"></script>
     <script src="https://kit.fontawesome.com/e686848577.js" crossorigin="anonymous"></script>
 </body>
 </html>
