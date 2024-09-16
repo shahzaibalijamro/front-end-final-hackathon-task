@@ -8,6 +8,7 @@ const navUsername = document.querySelector('.nav-username')
 const currentUser = [];
 const allBlogsWrapper = document.querySelector('#all-blogs-wrapper');
 const allBlogsArr = [];
+const pfp = document.querySelector('#pfp');
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         dashboardBtn.style.display = 'block'
@@ -18,15 +19,14 @@ onAuthStateChanged(auth, async (user) => {
         querySnapshot.forEach((doc) => {
             currentUser.push({
                 name: doc.data().name,
-                uid: doc.data().uid
+                uid: doc.data().uid,
+                pfp: doc.data().pfp,
             })
         });
-        navUsername.style.display = 'block';
-        navUsername.innerHTML = `Hello! ${currentUser[0].name}`
+        pfp.src = currentUser[0].pfp;
+        navUsername.innerHTML = `${currentUser[0].name}`
         logoutBtn.style.display = 'block';
     } else {
-        navUsername.style.display = 'block';
-        navUsername.innerHTML = `Hello! User`
         loginBtn.style.display = 'block';
     }
 });
@@ -48,9 +48,9 @@ async function getAllBlogs() {
     querySnapshot.forEach((doc) => {
         allBlogsArr.push(doc.data());
     });
-    console.log(allBlogsArr);
     renderAllBlogs()
 }
+console.log(allBlogsArr);
 
 getAllBlogs();
 
@@ -61,14 +61,14 @@ function renderAllBlogs() {
         <div class="p-[1.3rem] flex flex-col rounded-xl bg-white">
                 <div class="flex justify-start gap-4">
                     <div>
-                        <img class="rounded-xl" width="80px" src="https://s3-alpha-sig.figma.com/img/2a70/0436/ad923e69a8ff7debe812a1b55f9e2cca?Expires=1724630400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=KlN5pQQv4jEdOCnTfLPpybYuSAwr5EAyZYGTk1FuZ6FfynS9DzD7Rg-Sf6~qlp~GsmtA~w-ztYAv1FwIpep0yOjsA9zDVPB84U5BvXTfpSdO5G5wplZNnSwKYrSrsH49hjY14aWtagDKDGyxd1U8xttNecHcUciduqJnu2J21DtF1-MMAw-u~Fee~N-Y09JCpiyv3SGkvxG-GfWf6OQJrLDZ-MFGGznqmW8bTMuZn6Tqb7k1hDDGTtLxqrDuuFUTPD8Ius2qPElCsCK7xgWH7cwy66lzowF-z3zyNvWgxPxs6uzuyiFkCUIQ1Rah2qbpp4INPXVoL5td4cqEeN-sUA__" alt="">
+                        <img class="rounded-xl" width="70px" src=${item.pfp} alt="">
                     </div>
                     <div class="flex flex-col justify-end">
                         <div>
                             <h1 class="text-black font-semibold text-lg">${item.title}</h1>
                         </div>
                         <div class="text-[#6C757D] mb-[3px] font-medium flex gap-2 ">
-                            <h1>Elon Musk<span> - August 17th 2024</span></h1>
+                            <h1>${item.name}<span> - ${item.time}</span></h1>
                         </div>
                     </div>
                 </div>

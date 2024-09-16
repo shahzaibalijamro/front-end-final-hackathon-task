@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,21 +9,39 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-[#f8f9fa]">
-    <div class="navbar bg-[#7749f8] bg-base-100">
+
+<body style="min-height: 100vh;" class="bg-[#f8f9fa]">
+    <div class="navbar px-5 bg-[#7749f8] text-white bg-base-100">
         <div class="flex-1">
-            <a class="btn btn-ghost text-white text-xl">Blog App</a>
+            <a class="btn btn-ghost text-xl">Blogging App</a>
         </div>
         <div class="flex-none gap-2">
-            <h1 style="display: none;" class="text-white nav-username font-semibold text-lg">Hello! User</h1>
-            <button style="display: none;" class="btn nav-login-btn text-white btn-ghost"><a href="login.html">Login</a></button>
-            <button style="display: none;" class="btn nav-logout-btn text-white btn-ghost">Log out</button>
-            <button style="display: none;" class="btn text-white dashboardBtn btn-ghost"><a href="dashboard.html">Go to Dashboard</a></button>
+            <a class="btn btn-ghost nav-username text-xl"></a>
+            <div class="dropdown items-center dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                    <div class="w-10 rounded-full">
+                        <img id="pfp" alt="Tailwind CSS Navbar component"
+                            src="https://png.pngtree.com/png-vector/20220608/ourmid/pngtree-man-avatar-isolated-on-white-background-png-image_4891418.png" />
+                    </div>
+                </div>
+                <ul tabindex="0"
+                    class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                    <li>
+                        <a class="justify-between">
+                            Profile
+                            <span class="badge">New</span>
+                        </a>
+                    </li>
+                    <li style="display: none;" class="dashboardBtn"><a href="dashboard.html">Dashboard</a></li>
+                    <li style="display: none;" class="nav-login-btn"><a href="login.html">Login</a></li>
+                    <li style="display: none;" class="nav-logout-btn"><a>Logout</a></li>
+                </ul>
+            </div>
         </div>
     </div>
     <div class="p-[1.5rem] bg-white">
         <div class="my-container">
-                <h1 class="text-black font-bold text-2xl">Good Morning Readers!</h1>
+            <h1 class="text-black font-bold text-2xl">Good Morning Readers!</h1>
         </div>
     </div>
     <div class="my-container">
@@ -31,11 +50,12 @@
             <div id="all-blogs-wrapper" class="p-[1.3rem] flex flex-col rounded-xl bg-white">
                 <div class="text-center mt-[3rem]">
                     <span class="loading loading-spinner loading-lg"></span>
-                    </div>
+                </div>
             </div>
         </div>
     </div>
     <script type="module" src="./app/app.js"></script>
     <script src="https://kit.fontawesome.com/e686848577.js" crossorigin="anonymous"></script>
 </body>
+
 </html>

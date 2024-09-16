@@ -4,7 +4,7 @@
 }
 
 .custom-file-input::file-selector-button {
-    background-color: #4c68ff !important; /* Custom background color */
+    background-color: #7749f8 !important; /* Custom background color */
     color: white !important; /* Custom text color */
     /* border: 2px solid #ff3300 !important; Custom border color */
     padding: 0.5rem 1rem !important; /* Custom padding */
@@ -13,7 +13,7 @@
 }
 
 .custom-file-input::file-selector-button:hover {
-    background-color: #2e4cf7 !important; /* Custom hover background color */
+    background-color: #6128ff !important; /* Custom hover background color */
 }
 
 

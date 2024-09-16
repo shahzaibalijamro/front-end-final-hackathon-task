@@ -11,9 +11,24 @@
 </head>
 
 <body class="bg-[#f8f9fa]">
-    <div class="navbar bg-[#7749f8] bg-base-100">
+    <div class="navbar px-5 bg-[#7749f8] text-white bg-base-100">
         <div class="flex-1">
-            <a class="btn btn-ghost text-white text-xl">Register</a>
+            <a class="btn btn-ghost text-xl">Register</a>
+        </div>
+        <div class="flex-none gap-2">
+            <a class="btn btn-ghost nav-username text-xl"></a>
+            <div class="dropdown items-center dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                    <div class="w-10 rounded-full">
+                        <img alt="Tailwind CSS Navbar component"
+                            src="https://png.pngtree.com/png-vector/20220608/ourmid/pngtree-man-avatar-isolated-on-white-background-png-image_4891418.png" />
+                    </div>
+                </div>
+                <ul tabindex="0"
+                    class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                    <li class="dashboardBtn"><a href="index.html">Home</a></li>
+                </ul>
+            </div>
         </div>
     </div>
     <div class="h-[100vh] flex justify-center p-5 items-center">
@@ -31,8 +46,11 @@
                         class="input mt-3 bg-white input-bordered w-[100%]" required minlength="8"/>
                     <input id="registerRePassword" type="password" placeholder="Repeat your password"
                         class="input mt-3 bg-white input-bordered w-[100%]" required minlength="8" />
+                        <div class="text-center mt-3">
+                            <input id="file" type="file" class="file-input bg-white custom-file-input input-bordered file-input-primary w-[100%] max-w-xs" required/>
+                        </div>
                     <div class="text-center">
-                        <button class="btn bg-[#7749f8] mt-[1.5rem] text-white border-[#4c68ff]" type="submit">Sign up</button>
+                        <button class="btn bg-[#7749f8] mt-[1rem] text-white border-[#4c68ff] hover:bg-[#6128ff]" type="submit">Sign up</button>
                         <p class="mt-3 text-[#4c68ff]"><a href="login.html">Already a user? Login here!</a></p>
                     </div>
                 </form>
