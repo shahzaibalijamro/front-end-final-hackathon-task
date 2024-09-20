@@ -14,6 +14,8 @@ const pfp = document.querySelector('#pfp');
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         console.log(user.uid);
+        console.log(user);
+
         const usersRef = collection(db, "users");
         const q = query(usersRef, where("uid", "==", user.uid));
         const querySnapshot = await getDocs(q);
@@ -22,6 +24,7 @@ onAuthStateChanged(auth, async (user) => {
                 name: doc.data().name,
                 uid: doc.data().uid,
                 pfp: doc.data().pfp,
+                email: user.email
             })
         });
         pfp.src = currentUser[0].pfp;
@@ -42,8 +45,12 @@ dashboardForm.addEventListener('submit', async event => {
         "January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
     ];
-    const correctedDate = currentDate === 1 ? currentDate + 'st' : currentDate === 2 ? currentDate + 'nd' : currentDate === 3 ? currentDate + 'rd' : currentDate + 'th'
-    console.log(months[currentMonth], correctedDate, currentYear);
+    const correctedDate = (currentDate === 1 ? currentDate + 'st' :
+                            currentDate === 2 ? currentDate + 'nd' :
+                            currentDate === 3 ? currentDate + 'rd' :
+                            currentDate + 'th');
+    
+    const formattedTime = `${months[currentMonth]} ${correctedDate}, ${currentYear}`;
     event.preventDefault();
     const docRef = await addDoc(collection(db, "blogs"), {
         title: blogTitle.value,
@@ -51,12 +58,14 @@ dashboardForm.addEventListener('submit', async event => {
         uid: currentUser[0].uid,
         pfp: currentUser[0].pfp,
         name: currentUser[0].name,
-        time: `${months[currentMonth]} ${correctedDate} ${currentYear}`
+        time: formattedTime,
+        email: currentUser[0].email
     });
     console.log("Document written with ID: ", docRef.id);
     myBlogsArr.push({
         title: blogTitle.value,
         description: blogDescription.value,
+        time: formattedTime
     })
     blogTitle.value = '';
     blogDescription.value = '';
@@ -74,10 +83,9 @@ async function getMyBlogs() {
         myBlogsArr.push({
             title: doc.data().title,
             description: doc.data().description,
-            time : doc.data().time,
+            time: doc.data().time,
         })
     });
-    console.log(myBlogsArr);
     renderMyBlogs()
 }
 
@@ -124,5 +132,5 @@ logoutBtn.addEventListener('click', () => {
 function showSnackbar() {
     var snackbar = document.getElementById("snackbar");
     snackbar.className = "show";
-    setTimeout(function(){ snackbar.className = snackbar.className.replace("show", ""); }, 3000);
+    setTimeout(function () { snackbar.className = snackbar.className.replace("show", ""); }, 3000);
 }

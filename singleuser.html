@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Single User</title>
     <link rel="stylesheet" href="./style/style.css">
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-
 <body style="min-height: 100vh;" class="bg-[#f8f9fa]">
     <div class="navbar px-5 bg-[#7749f8] text-white bg-base-100">
         <div class="flex-1">
@@ -41,21 +39,29 @@
     </div>
     <div class="p-[1.5rem] bg-white">
         <div class="my-container">
-            <h1 class="text-black font-bold text-2xl">Good Morning Readers!</h1>
+            <h1 class="font-bold cursor-pointer text-2xl text-[#7749f8]"><a href="index.html">&lt; Back to All Blogs</a></h1>
         </div>
     </div>
     <div class="my-container">
         <h1 class="text-black font-semibold my-5 text-xl">All blogs</h1>
-        <div class="flex max-w-[64rem] gap-[1.25rem] flex-col">
-            <div id="all-blogs-wrapper" class="p-[1.3rem] flex flex-col rounded-xl bg-white">
-                <div class="text-center mt-[3rem]">
-                    <span class="loading loading-spinner loading-lg"></span>
+        <div class="flex gap-x-[2rem] justify-between">
+            <div class="flex max-w-[64rem] w-[64rem] gap-[1.25rem] flex-col">
+                <div id="all-blogs-wrapper" class="p-[1.3rem] flex flex-col rounded-xl bg-white">
+                    <div class="text-center mt-[3rem]">
+                        <span class="loading loading-spinner loading-lg"></span>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h1 class="font-semibold text-black text-xl">shahzaibalijamro@gmail.com</h1>
+                <h1 class="font-bold text-3xl text-end text-[#7749f8]">Shahzaib Ali</h1>
+                <div class="flex mt-4 justify-end">
+                    <img class="rounded-xl" width="200px" src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY-_R6V-nDMdEKuLC_LNEZG_BJ-6-m74_e1w&s' alt="">
                 </div>
             </div>
         </div>
     </div>
-    <script type="module" src="./app/app.js"></script>
+    <script type="module" src="./app/singleuser.js"></script>
     <script src="https://kit.fontawesome.com/e686848577.js" crossorigin="anonymous"></script>
 </body>
-
 </html>

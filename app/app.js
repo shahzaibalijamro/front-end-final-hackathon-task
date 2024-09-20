@@ -12,7 +12,6 @@ const pfp = document.querySelector('#pfp');
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         dashboardBtn.style.display = 'block'
-        console.log(user.uid);
         const usersRef = collection(db, "users");
         const q = query(usersRef, where("uid", "==", user.uid));
         const querySnapshot = await getDocs(q);
@@ -50,7 +49,6 @@ async function getAllBlogs() {
     });
     renderAllBlogs()
 }
-console.log(allBlogsArr);
 
 getAllBlogs();
 
@@ -76,9 +74,18 @@ function renderAllBlogs() {
                     <p class="text-[#6C757D]">${item.description}</p>
                 </div>
                 <div class="mt-3">
-                    <p class="text-[#7749f8] font-semibold"><a href="">see all from this user</a></p>
+                    <p id="seeAll" class="text-[#7749f8] font-semibold"><a href="">see all from this user</a></p>
                 </div>
             </div>
         `
+    })
+    const seeAllBtn = document.querySelectorAll('#seeAll');
+    seeAllBtn.forEach((item,index) => {
+        item.addEventListener('click', (e)=>{
+            e.preventDefault();
+            console.log(allBlogsArr[index]);
+            
+            // window.location = 'singleuser.html'
+        })
     })
 }
