@@ -48,6 +48,9 @@ dashboardForm.addEventListener('submit', async event => {
     const correctedDate = (currentDate === 1 ? currentDate + 'st' :
                             currentDate === 2 ? currentDate + 'nd' :
                             currentDate === 3 ? currentDate + 'rd' :
+                            currentDate === 21 ? currentDate + 'st' :
+                            currentDate === 22 ? currentDate + 'nd' :
+                            currentDate === 23 ? currentDate + 'rd' :
                             currentDate + 'th');
     
     const formattedTime = `${months[currentMonth]} ${correctedDate}, ${currentYear}`;
@@ -92,32 +95,39 @@ async function getMyBlogs() {
 
 function renderMyBlogs() {
     myBlogsWrapper.innerHTML = '';
-    myBlogsArr.map((item, index) => {
-        myBlogsWrapper.innerHTML += `
-        <div class="p-[1.3rem] flex flex-col rounded-xl bg-white">
-                <div class="flex justify-start gap-4">
-                    <div>
-                        <img class="rounded-xl" width="70px" src=${currentUser[0].pfp} alt="">
-                    </div>
-                    <div class="flex flex-col justify-end">
+    if (myBlogsArr) {
+        myBlogsArr.map((item, index) => {
+            myBlogsWrapper.innerHTML += `
+            <div class="p-[1.3rem] flex flex-col rounded-xl bg-white">
+                    <div class="flex justify-start gap-4">
                         <div>
-                            <h1 class="text-black font-semibold text-lg">${item.title}</h1>
+                            <img class="rounded-xl" width="70px" src=${currentUser[0].pfp} alt="">
                         </div>
-                        <div class="text-[#6C757D] mb-[3px] font-medium flex gap-2 ">
-                            <h1>${currentUser[0].name}<span> - ${item.time}</span></h1>
+                        <div class="flex flex-col justify-end">
+                            <div>
+                                <h1 class="text-black font-semibold text-lg">${item.title}</h1>
+                            </div>
+                            <div class="text-[#6C757D] mb-[3px] font-medium flex gap-2 ">
+                                <h1>${currentUser[0].name}<span> - ${item.time}</span></h1>
+                            </div>
                         </div>
                     </div>
+                    <div class="mt-4">
+                        <p class="text-[#6C757D]">${item.description}</p>
+                    </div>
+                    <div class="mt-3">
+                        <p class="text-[#7749f8] font-semibold"><a href="">see all from this user</a></p>
+                    </div>
                 </div>
-                <div class="mt-4">
-                    <p class="text-[#6C757D]">${item.description}</p>
-                </div>
-                <div class="mt-3">
-                    <p class="text-[#7749f8] font-semibold"><a href="">see all from this user</a></p>
-                </div>
-            </div>
-        `
-    })
-}
+            `
+        })
+    }else{
+        myBlogsWrapper.innerHTML = `
+    <div class="h-[10rem] flex justify-center items-center">
+        <h1 class="text-xl font-semibold text-black mb-[1.4rem]">No blogs Found...</h1>
+    </div>`;
+    }
+    }
 
 
 logoutBtn.addEventListener('click', () => {
