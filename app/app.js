@@ -4,6 +4,7 @@ import { collection, getDocs, query, where } from "https://www.gstatic.com/fireb
 const loginBtn = document.querySelector('.nav-login-btn');
 const logoutBtn = document.querySelector('.nav-logout-btn');
 const dashboardBtn = document.querySelector('.dashboardBtn');
+const profileBtn = document.querySelector('.profileBtn');
 const navUsername = document.querySelector('.nav-username')
 const currentUser = [];
 const allBlogsWrapper = document.querySelector('#all-blogs-wrapper');
@@ -13,6 +14,7 @@ const inputSearch = document.querySelector(".input-search");
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         dashboardBtn.style.display = 'block'
+        profileBtn.style.display = 'block'
         const usersRef = collection(db, "users");
         const q = query(usersRef, where("uid", "==", user.uid));
         const querySnapshot = await getDocs(q);
@@ -56,6 +58,9 @@ getAllBlogs();
 function renderAllBlogs() {
     allBlogsWrapper.innerHTML = '';
     allBlogsArr.map((item, index) => {
+        console.log(item.pfp);
+        console.log(item.name);
+        
         allBlogsWrapper.innerHTML += `
         <div class="p-[1.3rem] flex flex-col rounded-xl bg-white">
                 <div class="flex justify-start gap-4">

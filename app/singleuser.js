@@ -4,6 +4,7 @@ import { collection, getDocs, query, where, doc, setDoc, addDoc } from "https://
 const loginBtn = document.querySelector('.nav-login-btn');
 const logoutBtn = document.querySelector('.nav-logout-btn');
 const dashboardBtn = document.querySelector('.dashboardBtn');
+const profileBtn = document.querySelector('.profileBtn');
 const navUsername = document.querySelector('.nav-username')
 const currentUser = [];
 const allBlogsWrapper = document.querySelector('#all-blogs-wrapper');
@@ -29,6 +30,7 @@ const myBlogsArr = [];
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         dashboardBtn.style.display = 'block'
+        profileBtn.style.display = 'block'
         const usersRef = collection(db, "users");
         const q = query(usersRef, where("uid", "==", user.uid));
         const querySnapshot = await getDocs(q);
@@ -42,7 +44,6 @@ onAuthStateChanged(auth, async (user) => {
         pfp.src = currentUser[0].pfp;
         navUsername.innerHTML = `${currentUser[0].name}`
         logoutBtn.style.display = 'block';
-        getMyBlogs();
     } else {
         loginBtn.style.display = 'block';
     }
@@ -62,7 +63,7 @@ async function getMyBlogs() {
     });
     renderMyBlogs()
 }
-
+getMyBlogs();
 function renderMyBlogs() {
     myBlogsWrapper.innerHTML = '';
     myBlogsArr.map((item, index) => {
