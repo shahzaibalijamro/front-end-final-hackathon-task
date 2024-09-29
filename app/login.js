@@ -1,6 +1,12 @@
+//                      importing firebase necessities
+
 import { signInWithEmailAndPassword , sendPasswordResetEmail , GoogleAuthProvider , signInWithPopup , GithubAuthProvider,  onAuthStateChanged  } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 import { auth } from "./config.js";
-import { doc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+
+
+//                      Variables and constants
+
 const form = document.querySelector('#logInForm');
 const email = document.querySelector('#emailInput');
 const passwordInput = document.querySelector('#passwordInput');

@@ -1,6 +1,13 @@
+//                      importing firebase necessities
+
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { auth, db } from "./config.js";
 import { collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+
+
+//                      Variables and constants
+
 const loginBtn = document.querySelector('.nav-login-btn');
 const logoutBtn = document.querySelector('.nav-logout-btn');
 const dashboardBtn = document.querySelector('.dashboardBtn');
@@ -11,10 +18,16 @@ const allBlogsWrapper = document.querySelector('#all-blogs-wrapper');
 const allBlogsArr = [];
 const pfp = document.querySelector('#pfp');
 const inputSearch = document.querySelector(".input-search");
+
+
+
+//                      Checking user's current status
+
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         dashboardBtn.style.display = 'block'
         profileBtn.style.display = 'block'
+        // getting current user data from firestore
         const usersRef = collection(db, "users");
         const q = query(usersRef, where("uid", "==", user.uid));
         const querySnapshot = await getDocs(q);
@@ -35,6 +48,8 @@ onAuthStateChanged(auth, async (user) => {
 
 
 
+//                      Logout functionality
+
 logoutBtn.addEventListener('click', () => {
     signOut(auth).then(() => {
         loginBtn.style.display = 'none';
@@ -45,6 +60,9 @@ logoutBtn.addEventListener('click', () => {
 })
 
 
+
+//                      getting data from firestore
+
 async function getAllBlogs() {
     const querySnapshot = await getDocs(collection(db, "blogs"));
     querySnapshot.forEach((doc) => {
@@ -52,15 +70,15 @@ async function getAllBlogs() {
     });
     renderAllBlogs()
 }
-
 getAllBlogs();
+
+
+
+//                      rendering data on the screen
 
 function renderAllBlogs() {
     allBlogsWrapper.innerHTML = '';
     allBlogsArr.map((item, index) => {
-        console.log(item.pfp);
-        console.log(item.name);
-        
         allBlogsWrapper.innerHTML += `
         <div class="p-[1.3rem] flex flex-col rounded-xl bg-white">
                 <div class="flex justify-start gap-4">
@@ -89,7 +107,6 @@ function renderAllBlogs() {
     seeAllBtn.forEach((item, index) => {
         item.addEventListener('click', (e) => {
             e.preventDefault();
-            console.log(allBlogsArr[index]);
             localStorage.setItem('singleUser', JSON.stringify(allBlogsArr[index]));
             window.location = 'singleuser.html'
         })
@@ -107,7 +124,6 @@ inputSearch.addEventListener('input', () => {
         return item.title.toLowerCase().includes(searchValue) ||
             item.description.toLowerCase().includes(searchValue);
     });
-    console.log(filteredArr);
     renderFilteredData(filteredArr);
 });
 
@@ -147,7 +163,6 @@ function renderFilteredData(filteredArr) {
         seeAllBtn.forEach((item, index) => {
             item.addEventListener('click', (e) => {
                 e.preventDefault();
-                console.log(allBlogsArr[index]);
                 localStorage.setItem('singleUser', JSON.stringify(allBlogsArr[index]));
                 window.location = 'singleuser.html'
             })

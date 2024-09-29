@@ -1,7 +1,14 @@
+//                      importing firebase necessities
+
 import { createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { auth, db } from "./config.js";
 import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js"; 
 import { uploadBytes, getDownloadURL, ref, getStorage } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-storage.js";
+
+
+
+//                      Variables and constants
+
 const registerForm = document.querySelector('#registerForm');
 const registerFirstName = document.querySelector('#registerFirstName');
 const registerLastName = document.querySelector('#registerLastName');
@@ -12,6 +19,11 @@ const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,20}$/;
 const file = document.querySelector("#file");
 const storage = getStorage();
 let url = "";
+
+
+
+//                      registering user
+
 registerForm.addEventListener('submit', event => {
     event.preventDefault();
     const pfp = file.files[0];
@@ -21,11 +33,9 @@ registerForm.addEventListener('submit', event => {
                 .then(async (userCredential) => {
                     if (pfp) {
                         url = await uploadFile(pfp, registerEmail.value);
-                        console.log(url);
                         
                     }
                     const user = userCredential.user;
-                    console.log(user);
                     const docRef = await addDoc(collection(db, "users"), {
                         name: registerFirstName.value + " " + registerLastName.value,
                         pfp: url,
@@ -49,6 +59,9 @@ registerForm.addEventListener('submit', event => {
     }
 })
 
+
+
+//                uploading user's pfp on the firestore storage
 
 async function uploadFile(file, userEmail) {
     const storageRef = ref(storage, userEmail);

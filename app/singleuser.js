@@ -1,17 +1,29 @@
+//                      importing firebase necessities
+
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { auth, db } from "./config.js";
-import { collection, getDocs, query, where, doc, setDoc, addDoc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+import { collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+
+
+//                      Variables and constants
+
 const loginBtn = document.querySelector('.nav-login-btn');
 const logoutBtn = document.querySelector('.nav-logout-btn');
 const dashboardBtn = document.querySelector('.dashboardBtn');
 const profileBtn = document.querySelector('.profileBtn');
 const navUsername = document.querySelector('.nav-username')
+const myBlogsWrapper = document.querySelector('#my-blog-wrapper');
+const myBlogsArr = [];
 const currentUser = [];
-const allBlogsWrapper = document.querySelector('#all-blogs-wrapper');
-const allBlogsArr = [];
 const pfp = document.querySelector('#pfp');
 const sideBar = document.querySelector('#sidebar')
 const singleUser = JSON.parse(localStorage.getItem('singleUser'));
+
+
+
+//                      rendering the sidebar
+
 if (singleUser) {
     sideBar.innerHTML += `
     <h1 class="font-semibold text-end text-black text-xl">${singleUser.email}</h1>
@@ -21,16 +33,16 @@ if (singleUser) {
     </div>
     `
 }
-console.log(singleUser);
-const blogTitle = document.querySelector('.blog-title');
-const blogDescription = document.querySelector('.blog-description');
-const dashboardForm = document.querySelector('#dashboard-form');
-const myBlogsWrapper = document.querySelector('#my-blog-wrapper');
-const myBlogsArr = [];
+
+
+
+//                      Checking user's current status
+
 onAuthStateChanged(auth, async (user) => {
     if (user) {
         dashboardBtn.style.display = 'block'
         profileBtn.style.display = 'block'
+        // getting current user data from firestore
         const usersRef = collection(db, "users");
         const q = query(usersRef, where("uid", "==", user.uid));
         const querySnapshot = await getDocs(q);
@@ -50,7 +62,10 @@ onAuthStateChanged(auth, async (user) => {
 });
 
 
-async function getMyBlogs() {
+
+//                      getting the selected user's blogs
+
+async function getClickedUserBlogs() {
     const usersRef = collection(db, "blogs");
     const q = query(usersRef, where("uid", "==", singleUser.uid));
     const querySnapshot = await getDocs(q);
@@ -63,7 +78,12 @@ async function getMyBlogs() {
     });
     renderMyBlogs()
 }
-getMyBlogs();
+getClickedUserBlogs();
+
+
+
+//                      rendering data on the screen
+
 function renderMyBlogs() {
     myBlogsWrapper.innerHTML = '';
     myBlogsArr.map((item, index) => {

@@ -1,7 +1,13 @@
+//                      importing firebase necessities
+
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
 import { auth, db } from "./config.js";
 import { collection, getDocs, query, where, doc, setDoc, addDoc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
-const loginBtn = document.querySelector('.nav-login-btn');
+
+
+
+//                      Variables and constants
+
 const logoutBtn = document.querySelector('.nav-logout-btn');
 const navUsername = document.querySelector('.nav-username')
 const blogTitle = document.querySelector('.blog-title');
@@ -11,11 +17,14 @@ const dashboardForm = document.querySelector('#dashboard-form');
 const myBlogsWrapper = document.querySelector('#my-blog-wrapper');
 const myBlogsArr = [];
 const pfp = document.querySelector('#pfp');
+
+
+
+//                      Checking user's current status
+
 onAuthStateChanged(auth, async (user) => {
     if (user) {
-        console.log(user.uid);
-        console.log(user);
-
+        // getting current user data from firestore
         const usersRef = collection(db, "users");
         const q = query(usersRef, where("uid", "==", user.uid));
         const querySnapshot = await getDocs(q);
@@ -35,6 +44,9 @@ onAuthStateChanged(auth, async (user) => {
     }
 });
 
+
+
+//                      Pushing data to firestore database
 
 dashboardForm.addEventListener('submit', async event => {
     const current = new Date();
@@ -64,7 +76,6 @@ dashboardForm.addEventListener('submit', async event => {
         time: formattedTime,
         email: currentUser[0].email
     });
-    console.log("Document written with ID: ", docRef.id);
     myBlogsArr.push({
         title: blogTitle.value,
         description: blogDescription.value,
@@ -77,6 +88,8 @@ dashboardForm.addEventListener('submit', async event => {
 })
 
 
+
+//                 Receiving current user's blogs from firestore
 
 async function getMyBlogs() {
     const usersRef = collection(db, "blogs");
@@ -92,6 +105,9 @@ async function getMyBlogs() {
     renderMyBlogs()
 }
 
+
+
+//                      rendering data on the screen
 
 function renderMyBlogs() {
     myBlogsWrapper.innerHTML = '';
@@ -115,9 +131,6 @@ function renderMyBlogs() {
                     <div class="mt-4">
                         <p class="text-[#6C757D]">${item.description}</p>
                     </div>
-                    <div class="mt-3">
-                        <p class="text-[#7749f8] font-semibold"><a href="">see all from this user</a></p>
-                    </div>
                 </div>
             `
         })
@@ -130,6 +143,9 @@ function renderMyBlogs() {
     }
 
 
+
+//                      Logout functionality
+
 logoutBtn.addEventListener('click', () => {
     signOut(auth).then(() => {
         window.location = 'login.html';
@@ -138,6 +154,9 @@ logoutBtn.addEventListener('click', () => {
     });
 })
 
+
+
+//                      Confirmation Alert
 
 function showSnackbar() {
     var snackbar = document.getElementById("snackbar");
