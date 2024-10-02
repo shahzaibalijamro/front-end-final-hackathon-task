@@ -26,10 +26,12 @@ const singleUser = JSON.parse(localStorage.getItem('singleUser'));
 
 if (singleUser) {
     sideBar.innerHTML += `
+    <div class="sidebarIn">
     <h1 class="font-semibold text-end text-black text-xl">${singleUser.email}</h1>
     <h1 class="font-bold text-3xl text-end text-[#7749f8]">${singleUser.name}</h1>
     <div class="flex mt-4 justify-end">
         <img class="rounded-xl" width="200px" src=${singleUser.pfp} alt="">
+    </div>
     </div>
     `
 }

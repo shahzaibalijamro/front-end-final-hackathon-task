@@ -81,16 +81,16 @@ function renderAllBlogs() {
     allBlogsArr.map((item, index) => {
         allBlogsWrapper.innerHTML += `
         <div class="p-[1.3rem] flex flex-col rounded-xl bg-white">
-                <div class="flex justify-start gap-4">
+                <div class="flex blogWrapper justify-start gap-4">
                     <div>
-                        <img class="rounded-xl" width="70px" src=${item.pfp} alt="">
+                        <img class="rounded-xl blogImg" width="70px" src=${item.pfp} alt="">
                     </div>
                     <div class="flex flex-col justify-end">
                         <div>
                             <h1 class="text-black font-semibold text-lg">${item.title}</h1>
                         </div>
                         <div class="text-[#6C757D] mb-[3px] font-medium flex gap-2 ">
-                            <h1>${item.name}<span> - ${item.time}</span></h1>
+                            <h1 class="blogTime">${item.name}<span> - ${item.time}</span></h1>
                         </div>
                     </div>
                 </div>
@@ -146,7 +146,7 @@ function renderFilteredData(filteredArr) {
                             <h1 class="text-black font-semibold text-lg">${item.title}</h1>
                         </div>
                         <div class="text-[#6C757D] mb-[3px] font-medium flex gap-2 ">
-                            <h1>${item.name}<span> - ${item.time}</span></h1>
+                            <h1 class="blogTime">${item.name}<span> - ${item.time}</span></h1>
                         </div>
                     </div>
                 </div>

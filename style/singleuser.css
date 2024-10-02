@@ -1,105 +1,106 @@
 .input-bordered{
     border-color: #56585c6b !important;
-    background-color: white !important;
+}
+
+p{
+    word-break: break-all !important;
 }
 
 .my-container{
-    max-width: 1300px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 0px 20px;
 }
 
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+::-webkit-scrollbar-corner {
+    background: #ccc;
+}
+
+
 .group {
-  display: flex !important;
-  line-height: 28px !important;
-  align-items: center !important;
-  position: relative !important;
-  max-width: 1200px !important;
-  width: 100% !important;
-  border: 2px solid #A1A1A1;
-  border-radius: 8px;
+    display: flex !important;
+    line-height: 28px !important;
+    align-items: center !important;
+    position: relative !important;
+    max-width: 1200px !important;
+    width: 100% !important;
+    border: 2px solid #A1A1A1;
+    border-radius: 8px;
 }
 
 .input-search {
-  width: 100% !important;
-  height: 40px !important;
-  line-height: 28px !important;
-  padding: 0 1rem !important;
-  padding-left: 2.5rem !important;
-  border-radius: 6px !important;
-  outline: none !important;
-  background-color: transparent !important;
-  color: #A1A1A1 !important;
-  transition: .3s ease !important;
+    width: 100% !important;
+    height: 40px !important;
+    line-height: 28px !important;
+    padding: 0 1rem !important;
+    padding-left: 2.5rem !important;
+    border-radius: 6px !important;
+    outline: none !important;
+    background-color: transparent !important;
+    color: #A1A1A1 !important;
+    transition: .3s ease !important;
 }
 
 .input::placeholder {
-  color: #A1A1A1 !important;
+    color: #A1A1A1 !important;
 }
 
 .input:focus,
 input:hover {
-  outline: none !important;
-  border-color: #7749f8 !important;
-  background-color: #fff !important;
-  box-shadow: 0 0 0 2px #7749f8 !important;
+    outline: none !important;
+    border-color: #7749f8 !important;
+    background-color: #fff !important;
+    box-shadow: 0 0 0 2px #7749f8 !important;
 }
 
 .icon {
-  position: absolute !important;
-  left: 1rem !important;
-  fill: black !important;
-  width: 1rem !important;
-  height: 1rem !important;
+    position: absolute !important;
+    left: 1rem !important;
+    fill: black !important;
+    width: 1rem !important;
+    height: 1rem !important;
 }
 
 
-#snackbar {
-    visibility: hidden;
-    min-width: 250px;
-    background-color: #7749f8;
-    color: #fff;
-    text-align: center;
-    border-radius: 2px;
-    padding: 16px;
-    position: fixed;
-    z-index: 1;
-    left: 50%;
-    bottom: 30px;
-    transform: translateX(-50%);
-  }
 
-  #snackbar.show {
-    visibility: visible;
-    animation: fadein 0.5s, fadeout 0.5s 2.5s;
-  }
-
-  @keyframes fadein {
-    from {bottom: 0; opacity: 0;}
-    to {bottom: 30px; opacity: 1;}
-  }
-
-  @keyframes fadeout {
-    from {bottom: 30px; opacity: 1;}
-    to {bottom: 0; opacity: 0;}
-  }
-
-
-
-  @media(min-width:1300px){
+@media(min-width:1300px){
     #sidebar{
         width: 100%;
         max-width: 300px;
     }
 }
 
-@media(max-width:900px){
+@media(max-width:1000px){
     .my-5{
         padding: 0px 3px !important;
     }
     #sidebar{
         order: -1 !important;
         width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .sidebarIn{
+        order: -1 !important;
     }
     #left{
         max-width: 100% !important;
@@ -128,11 +129,8 @@ input:hover {
     .greetText{
         font-size: 1.3rem !important;
     }
-    #my-blog-wrapper{
+    #all-blogs-wrapper{
         padding: 1rem !important;
-    }
-    .blogPostWrapper{
-      padding: 1.75rem !important;
     }
     .blogImg{
         width: 60px !important;
@@ -163,14 +161,8 @@ input:hover {
         font-size: 1.2rem !important;
         text-align: center;
     }
-    .postBtn{
-      font-size: 12px !important;
-    }
-    #my-blog-wrapper{
+    #all-blogs-wrapper{
         padding: 0.3rem !important;
-    }
-    .blogPostWrapper{
-      padding: 1.5rem !important;
     }
     .blogImg{
         width: 60px !important;
@@ -208,10 +200,7 @@ input:hover {
 
 
 @media(max-width:450px){
-    #my-blog-wrapper{
+    #all-blogs-wrapper{
         padding: 0rem !important;
-    }
-    .blogPostWrapper{
-      padding: 1.3rem !important;
     }
 }

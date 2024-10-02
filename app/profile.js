@@ -68,6 +68,7 @@ onAuthStateChanged(auth, async (user) => {
                 getMyBlogs(editedName)
                 showSnackbarAfterNameUpdate()
             })
+            //update pfp
             editPfpBtn.addEventListener('click', () => {
                 fileInput.click();
             });
@@ -99,8 +100,7 @@ onAuthStateChanged(auth, async (user) => {
 function passwordReset(email) {
     sendPasswordResetEmail(auth, email)
         .then(() => {
-            alert(`Password reset email has been sent to your registered email address
-"${email}"`)
+            showSnackbarAfterResetEmail(email)
         })
         .catch((error) => {
             const errorMessage = error.message;
@@ -186,5 +186,17 @@ function showSnackbarAfterPfpUpdate() {
 function showSnackbarAfterNameUpdate() {
     var snackbar = document.getElementById("snackbar2");
     snackbar.className = "show";
+    setTimeout(function () { snackbar.className = snackbar.className.replace("show", ""); }, 3000);
+}
+
+
+
+//                  confirmation alert for reset password email
+
+function showSnackbarAfterResetEmail(userEmail) {
+    var snackbar = document.getElementById("snackbar3");
+    snackbar.className = "show";
+    snackbar.innerHTML = `Password reset email has been sent to your registered email address <br/>
+    ${userEmail}`
     setTimeout(function () { snackbar.className = snackbar.className.replace("show", ""); }, 3000);
 }

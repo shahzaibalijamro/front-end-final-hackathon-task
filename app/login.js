@@ -10,13 +10,16 @@ import { auth } from "./config.js";
 const form = document.querySelector('#logInForm');
 const email = document.querySelector('#emailInput');
 const passwordInput = document.querySelector('#passwordInput');
+const loginBtn = document.querySelector('.loginBtn');
 
 
 // signs in through email and password
 form.addEventListener('submit', event =>{
     event.preventDefault();
+    loginBtn.innerHTML = 'logging in....'
     signInWithEmailAndPassword(auth, email.value, passwordInput.value)
     .then((userCredential) => {
+        loginBtn.innerHTML = 'Login'
         window.location = 'dashboard.html';
     })
     .catch((error) => {

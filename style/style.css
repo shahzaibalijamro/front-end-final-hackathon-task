@@ -2,6 +2,10 @@
     border-color: #56585c6b !important;
 }
 
+p{
+    word-break: break-all !important;
+}
+
 .my-container{
     max-width: 1400px;
     margin: 0 auto;
@@ -82,5 +86,116 @@ input:hover {
     #sidebar{
         width: 100%;
         max-width: 300px;
+    }
+}
+
+@media(max-width:1150px){
+    .my-5{
+        padding: 0px 3px !important;
+    }
+    #sidebar{
+        order: -1 !important;
+        width: 100%;
+    }
+    #left{
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+    .main-wrapper{
+        flex-wrap: wrap !important;
+    }
+}
+
+@media(max-width:700px){
+    /* #sidebar{
+        order: -1 !important;
+        width: 100%;
+    }
+    #left{
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+    .main-wrapper{
+        flex-wrap: wrap !important;
+    } */
+    .greet{
+        padding: 1.2rem !important;
+    }
+    .greetText{
+        font-size: 1.3rem !important;
+    }
+    #all-blogs-wrapper{
+        padding: 1rem !important;
+    }
+    .blogImg{
+        width: 60px !important;
+        max-width: 60px !important;
+        min-width: 60px !important;
+    }
+    .blogWrapper{
+        align-items: center !important;
+    }
+}
+
+@media(max-width:500px){
+    /* #sidebar{
+        order: -1 !important;
+        width: 100%;
+    }
+    #left{
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+    .main-wrapper{
+        flex-wrap: wrap !important;
+    } */
+    .greet{
+        padding: 1rem !important;
+    }
+    .greetText{
+        font-size: 1.2rem !important;
+        text-align: center;
+    }
+    #all-blogs-wrapper{
+        padding: 0.3rem !important;
+    }
+    .blogImg{
+        width: 60px !important;
+        max-width: 60px !important;
+        min-width: 60px !important;
+    }
+    .blogWrapper{
+        align-items: center !important;
+    }
+    .navbar{
+        padding: 8px 0.5rem !important;
+    }
+    .navbarRight{
+        gap: 0rem !important;
+    }
+    .logo{
+        padding: 0px 0px 0px 10px !important;
+    }
+    .nav-username{
+        padding: 0px 6px 0px 0px !important;
+    }
+    .text-xl{
+        font-size: 1rem !important;
+    }
+    .text-lg{
+        font-size: 1rem !important;
+    }
+    .blogTime{
+        font-size: 14px !important;
+    }
+    .my-5{
+        margin: 1rem 0rem !important;
+    }
+}
+
+
+@media(max-width:450px){
+    #all-blogs-wrapper{
+        padding: 0rem !important;
     }
 }

@@ -17,6 +17,7 @@ const dashboardForm = document.querySelector('#dashboard-form');
 const myBlogsWrapper = document.querySelector('#my-blog-wrapper');
 const myBlogsArr = [];
 const pfp = document.querySelector('#pfp');
+const inputSearch = document.querySelector(".input-search");
 
 
 
@@ -115,16 +116,16 @@ function renderMyBlogs() {
         myBlogsArr.map((item, index) => {
             myBlogsWrapper.innerHTML += `
             <div class="p-[1.3rem] flex flex-col rounded-xl bg-white">
-                    <div class="flex justify-start gap-4">
+                    <div class="flex blogWrapper justify-start gap-4">
                         <div>
-                            <img class="rounded-xl" width="70px" src=${currentUser[0].pfp} alt="">
+                            <img class="rounded-xl blogImg" width="70px" src=${currentUser[0].pfp} alt="">
                         </div>
                         <div class="flex flex-col justify-end">
                             <div>
                                 <h1 class="text-black font-semibold text-lg">${item.title}</h1>
                             </div>
                             <div class="text-[#6C757D] mb-[3px] font-medium flex gap-2 ">
-                                <h1>${currentUser[0].name}<span> - ${item.time}</span></h1>
+                                <h1 class="blogTime">${currentUser[0].name}<span> - ${item.time}</span></h1>
                             </div>
                         </div>
                     </div>
@@ -141,6 +142,58 @@ function renderMyBlogs() {
     </div>`;
     }
     }
+
+
+
+
+    // search functionality
+    
+    inputSearch.addEventListener('input', () => {
+        const searchValue = inputSearch.value.toLowerCase();
+        const filteredArr = myBlogsArr.filter(item => {
+            return item.title.toLowerCase().includes(searchValue) ||
+                item.description.toLowerCase().includes(searchValue);
+        });
+        renderFilteredData(filteredArr);
+    });
+
+
+
+    // render searched blogs
+    
+    function renderFilteredData(filteredArr) {
+        myBlogsWrapper.innerHTML = "";
+        if (filteredArr.length > 0) {
+            filteredArr.map((item, index) => {
+                myBlogsWrapper.innerHTML += `
+            <div class="p-[1.3rem] flex flex-col rounded-xl bg-white">
+                    <div class="flex blogWrapper justify-start gap-4">
+                        <div>
+                            <img class="rounded-xl blogImg" width="70px" src=${currentUser[0].pfp} alt="">
+                        </div>
+                        <div class="flex flex-col justify-end">
+                            <div>
+                                <h1 class="text-black font-semibold text-lg">${item.title}</h1>
+                            </div>
+                            <div class="text-[#6C757D] mb-[3px] font-medium flex gap-2 ">
+                                <h1 class="blogTime">${currentUser[0].name}<span> - ${item.time}</span></h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <p class="text-[#6C757D]">${item.description}</p>
+                    </div>
+                </div>
+            `
+            })
+        } else {
+            myBlogsWrapper.innerHTML = `
+        <div class="h-[10rem] flex justify-center items-center">
+            <h1 class="text-xl font-semibold text-black mb-[1.4rem]">No blogs Found...</h1>
+        </div>`;
+        }
+    }
+
 
 
 
