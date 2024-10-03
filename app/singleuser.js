@@ -27,9 +27,9 @@ const singleUser = JSON.parse(localStorage.getItem('singleUser'));
 if (singleUser) {
     sideBar.innerHTML += `
     <div class="sidebarIn">
-    <h1 class="font-semibold text-end text-black text-xl">${singleUser.email}</h1>
-    <h1 class="font-bold text-3xl text-end text-[#7749f8]">${singleUser.name}</h1>
-    <div class="flex mt-4 justify-end">
+    <h1 class="font-semibold text-end order1 text-black text-xl">${singleUser.email}</h1>
+    <h1 class="font-bold text-3xl order0 text-end text-[#7749f8]">${singleUser.name}</h1>
+    <div class="flex mt-4 order-1 justify-end">
         <img class="rounded-xl" width="200px" src=${singleUser.pfp} alt="">
     </div>
     </div>
@@ -91,16 +91,16 @@ function renderMyBlogs() {
     myBlogsArr.map((item, index) => {
         myBlogsWrapper.innerHTML += `
         <div class="p-[1.3rem] flex flex-col rounded-xl bg-white">
-                <div class="flex justify-start gap-4">
+                <div class="flex blogWrapper justify-start gap-4">
                     <div>
-                        <img class="rounded-xl" width="70px" src=${singleUser.pfp} alt="">
+                        <img class="rounded-xl blogImg" width="70px" src=${singleUser.pfp} alt="">
                     </div>
                     <div class="flex flex-col justify-end">
                         <div>
                             <h1 class="text-black font-semibold text-lg">${item.title}</h1>
                         </div>
                         <div class="text-[#6C757D] mb-[3px] font-medium flex gap-2 ">
-                            <h1>${singleUser.name}<span> - ${item.time}</span></h1>
+                            <h1 class="blogTime">${singleUser.name}<span> - ${item.time}</span></h1>
                         </div>
                     </div>
                 </div>
